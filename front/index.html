@@ -7,84 +7,22 @@
 	<link rel="stylesheet" href="inc/normalize.css">
 	<link rel="stylesheet" href="inc/skeleton.css">
 	<link rel="stylesheet" href="css/style.css">
-	<!-- React Includes -->
+	<!-- Javascript -->
 	<script src="http://fb.me/react-0.12.2.js"></script>
 	<script src="http://fb.me/JSXTransformer-0.12.2.js"></script>
 	<script src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+	<script src="http://underscorejs.org/underscore-min.js"></script>
 </head>
 <body>
-	<!-- Main -->
-	<main id="main" class="container">
-			
-	</main>
 	<!-- React Application -->
 	<script type="text/jsx">
-		var Data = [{
-		        "url": "http://localhost:8000/api/v1/board/1/", 
-		        "id": 1, 
-		        "name": "Family Chores", 
-		        "position": 1, 
-		        "cards": [
-		            {
-		                "id": 1, 
-		                "name": "Colton", 
-		                "position": 1, 
-		                "activities": [
-		                    {
-		                        "id": 1, 
-		                        "name": "Make Bed", 
-		                        "position": 1, 
-		                        "card": 1, 
-		                        "comments": []
-		                    }, 
-		                    {
-		                        "id": 4, 
-		                        "name": "Make React Frontend", 
-		                        "position": 2, 
-		                        "card": 1, 
-		                        "comments": []
-		                    }
-		                ]
-		            }, 
-		            {
-		                "id": 2, 
-		                "name": "Ashley", 
-		                "position": 2, 
-		                "activities": [
-		                    {
-		                        "id": 2, 
-		                        "name": "Make Dinner", 
-		                        "position": 1, 
-		                        "card": 2, 
-		                        "comments": []
-		                    }
-		                ]
-		            }, 
-		            {
-		                "id": 3, 
-		                "name": "Bloo", 
-		                "position": 3, 
-		                "activities": [
-		                    {
-		                        "id": 3, 
-		                        "name": "Lick Butt", 
-		                        "position": 1, 
-		                        "card": 3, 
-		                        "comments": [
-		                            {
-		                                "id": 1, 
-		                                "body": "Shouldn't be too hard for you..."
-		                            }
-		                        ]
-		                    }
-		                ]
-		            }
-		        ]
-		    }
-		];
-
-
 		var Activity = React.createClass({
+			getInitialState: function() {
+				return {
+					position: this.props.position,
+					card: this.props.card,
+				}
+			},
 			render: function() {
 				return (
 					<li className='activity'>
@@ -97,9 +35,14 @@
 		var Card = React.createClass({
 			render: function() {
 				var activities = this.props.activities.map(function(activity) {
-					return <Activity activity={activity['name']} />
+					return (
+						<Activity 
+							activity={activity['name']}
+							position={activity['position']}
+							card={activity['card']}
+						/>
+					)
 				});
-
 				return (
 					<li className='card'>
 						<h4>{this.props.card}</h4>
@@ -113,18 +56,17 @@
 
 		var Board = React.createClass({
 			render: function() {
-				var data = Data;
-				
-				var name = data[0]['name'];
-				var position = data[0]['position'];
-				var card_set = data[0]['cards'];
-				var cards = card_set.map(function(card) {
-					return <Card card={card['name']} activities={card['activities']} />
+				var cards = this.props.cards.map(function(card) {
+					return (
+						<Card 
+							card={card['name']} 
+							activities={card['activities']} 
+						/>
+					)
 				});
-
 				return (
 					<section className='row'>
-						<h3 className='board-title'>{name}</h3>
+						<h3 className='board-title'>{this.props.board}</h3>
 						<ul>
 							{cards}
 						</ul>
@@ -133,7 +75,34 @@
 			}
 		});
 
-		React.render(<Board />, document.getElementById('main'));
+		var App = React.createClass({
+			render: function() {
+				var Data = null;
+				$.ajax({
+					url: 'http://localhost:8000/api/v1/board/',
+					method: 'GET',
+					async: false,
+					success: function(results) {
+						Data = results;
+					},
+				});
+				var boards = Data.map(function(board) {
+					return (
+						<Board 
+							board={board['name']} 
+							cards={board['cards']} 
+						/>
+					)
+				});
+				return (
+					<main className='container'>
+						{boards}
+					</main>
+				)
+			}
+		});
+
+		React.render(<App />, document.body);
 	</script>
 </body>
 </html>
