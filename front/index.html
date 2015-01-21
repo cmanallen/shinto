@@ -39,10 +39,30 @@
 					card: this.props.card,
 				}
 			},
+			moveCard: function() {
+				this.setState({
+					card: this.refs.card.getDOMNode().value,
+				})
+			},
+			movePosition: function() {
+				this.setState({
+					position: this.refs.position.getDOMNode().value,
+				})
+			},
 			render: function() {
 				return (
 					<li className='activity'>
 						<h5>{this.props.activity}</h5>
+						<input 
+							onChange={this.moveCard}
+							value={this.state.card}
+							ref="card"
+						/>
+						<input 
+							onChange={this.movePosition}
+							value={this.state.position}
+							ref="position"
+						/>
 					</li>
 				)
 			}
