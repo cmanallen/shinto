@@ -4,8 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Shinto</title>
 	<!-- Styles -->
-	<link rel="stylesheet" href="inc/normalize.css">
-	<link rel="stylesheet" href="inc/skeleton.css">
+	<link rel="stylesheet" href="inc/bootstrap.min.css">
 	<link rel="stylesheet" href="css/style.css">
 	<!-- Javascript -->
 	<script src="http://fb.me/react-0.12.2.js"></script>
@@ -14,6 +13,23 @@
 	<script src="http://underscorejs.org/underscore-min.js"></script>
 </head>
 <body>
+	<header>
+		<strong>Shinto - Another Kanban Clone</strong>
+	</header>
+	<main class="container-fluid">
+		<section id="controls">
+			<ul id="sorting-options" class="list-unstyled">
+				<li><span class="glyphicon glyphicon-th"></span></li>
+				<li><span class="glyphicon glyphicon-menu-hamburger"></span></li>
+			</ul>
+			<button class="btn btn-success">
+				+ <b>Add Activity</b>
+			</button>
+		</section>
+		<section id="application">
+			<!--  -->
+		</section>
+	</main>
 	<!-- React Application -->
 	<script type="text/jsx">
 		var Activity = React.createClass({
@@ -95,14 +111,14 @@
 					)
 				});
 				return (
-					<main className='container'>
+					<div>
 						{boards}
-					</main>
+					</div>
 				)
 			}
 		});
 
-		React.render(<App />, document.body);
+		React.render(<App />, document.getElementById('application'));
 	</script>
 </body>
 </html>

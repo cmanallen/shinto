@@ -1,3 +1,15 @@
+header {
+	width:100%;
+	padding:20px;
+	background:#172457;
+	color:white;
+}
+
+main {
+
+}
+
+
 .activity {
 	cursor:move;
 }
