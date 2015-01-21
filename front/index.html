@@ -53,12 +53,12 @@
 				return (
 					<li className='activity'>
 						<h5>{this.props.activity}</h5>
-						<input 
+						Card: <input 
 							onChange={this.moveCard}
 							value={this.state.card}
 							ref="card"
-						/>
-						<input 
+						/><br /><br />
+						Position: <input 
 							onChange={this.movePosition}
 							value={this.state.position}
 							ref="position"
@@ -91,6 +91,11 @@
 		});
 
 		var Board = React.createClass({
+			sortObject: function(data) {
+				data.sort(function(a, b) {
+					return parseFloat(a.cards.id) - parseFloat(b.cards.id);
+				});
+			},
 			render: function() {
 				var cards = this.props.cards.map(function(card) {
 					return (
@@ -112,7 +117,7 @@
 		});
 
 		var App = React.createClass({
-			render: function() {
+			retrieveData: function() {
 				var Data = null;
 				$.ajax({
 					url: 'http://localhost:8000/api/v1/board/',
@@ -122,7 +127,10 @@
 						Data = results;
 					},
 				});
-				var boards = Data.map(function(board) {
+				return Data;
+			},
+			render: function() {
+				var boards = this.retrieveData().map(function(board) {
 					return (
 						<Board 
 							board={board['name']} 
