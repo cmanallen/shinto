@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/style.css">
 	<!-- Javascript -->
-	<script src="http://fb.me/react-0.12.2.js"></script>
+	<script src="http://fb.me/react-with-addons-0.12.2.min.js"></script>
 	<script src="http://fb.me/JSXTransformer-0.12.2.js"></script>
 	<script src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
 	<script src="http://underscorejs.org/underscore-min.js"></script>
@@ -34,57 +34,108 @@
 	</main>
 	<!-- React Application -->
 	<script type="text/jsx">
+		var Server = {
+			_data: $.get('http://localhost:8000/api/v1/board/', function(data) {
+				return data;
+			}),
+
+			loadData: function(callback) {
+				setTimeout(callback.bind(null, this._data), 500);
+			},
+
+			updateBoard: function(board) {
+				// 
+			},
+
+			updateCard: function(card) {
+				// 
+			},
+
+			updateActivity: function(activity) {
+				// 
+			},
+
+			updateComment: function(comment) {
+				// 
+			},
+		};
+
 		var Activity = React.createClass({
+
+			mixins: [React.addons.LinkedStateMixin],
+
 			getInitialState: function() {
 				return {
 					position: this.props.position,
-					card: this.props.card,
+					name: this.props.activity.name,
 				}
 			},
-			moveCard: function() {
-				this.setState({
-					card: this.refs.card.getDOMNode().value,
-				})
-			},
-			movePosition: function() {
-				this.setState({
-					position: this.refs.position.getDOMNode().value,
-				})
-			},
+
 			render: function() {
 				return (
 					<li className='activity'>
-						<h5>{this.props.activity}</h5>
-						Card: <input 
-							onChange={this.moveCard}
-							value={this.state.card}
-							ref="card"
-						/><br /><br />
-						Position: <input 
-							onChange={this.movePosition}
-							value={this.state.position}
-							ref="position"
-						/>
+						<div className="activity-name">
+							Name:
+							<input 
+								ref="name"
+								defaultValue={this.props.name}
+								valueLink={this.linkState('name')}
+							/>
+						</div>
+						<div className="activity-position">
+							Position:
+							<input 
+								ref="position"
+								defaultValue={this.props.position}
+								valueLink={this.linkState('position')}
+							/>
+						</div>
+						<button 
+							className="activity-save"
+							onClick={this.handleSave}
+						>
+							Save
+						</button>
 					</li>
 				)
+			},
+
+			handleSave: function() {
+				var valueToSave = _.clone(this.props.activity);
+				valueToSave.position = parseInt(this.refs.position.getDOMNode().value, 10);
+				valueToSave.name = this.refs.name.getDOMNode().value.trim();
+				this.props.onChange(valueToSave);
 			}
 		});
 
 		var Card = React.createClass({
 			getInitialState: function() {
 				return {
-					activities: this.props.activities.sort(function(a, b) {
-						return parseFloat(a.position) - parseFloat(b.position);
-					}),
+					activities: this.props.activities,
 				}
 			},
-			updateActivities: function() {
-				this.setState({
-					activities: this.state.activities.sort(function(a, b) {
-						return parseFloat(a.position) - parseFloat(b.position);
-					}),
-				})
+			
+			handleActivityChanged: function(activity) {
+				var activities = _.clone(this.state.activities);
+				var activity_index = _.findIndex(activities, function(current) {
+					return current.id === activity.id
+				});
+
+				if (activity_index != -1) {
+					activities[activity_index] = activity;
+					
+					activities.sort(function(a, b) {
+						return a.position - b.position;
+					});
+
+					this.setState({
+						activities: activities,
+					});
+
+					// Server.updateActivity(activity);
+				}
 			},
+
 			render: function() {
 				var activities = this.state.activities.map(function(activity) {
 					return (
@@ -92,7 +143,7 @@
 							activity={activity['name']}
 							position={activity['position']}
 							card={activity['card']}
-							onChange={this.updateActivities}
+							onChange={this.handleActivityChanged}
 						/>
 					)
 				});
@@ -108,8 +159,14 @@
 		});
 
 		var Board = React.createClass({
+			getInitialState: function() {
+				return {
+					cards: this.props.cards,
+				}
+			},
+
 			render: function() {
-				var cards = this.props.cards.sort(function(a, b) {
+				var cards = this.state.cards.sort(function(a, b) {
 					return parseFloat(a.id) - parseFloat(b.id);
 				}).map(function(card) {
 					return (
@@ -131,20 +188,29 @@
 		});
 
 		var App = React.createClass({
-			retrieveData: function() {
-				var Data = null;
-				$.ajax({
-					url: 'http://localhost:8000/api/v1/board/',
-					method: 'GET',
-					async: false,
-					success: function(results) {
-						Data = results;
-					},
-				});
-				return Data;
+			getInitialState: function() {
+				return {
+					boards: [],
+				};
 			},
+
+			componentDidMount: function() {
+				this.loadFromServer();
+			},
+
+			loadFromServer: function() {
+				Server.loadData(this.handleServerLoaded);
+			},
+
+			handleServerLoaded: function(boards) {
+				this.setState({
+					boards: JSON.parse(boards['responseText']),
+				});
+			},
+
 			render: function() {
-				var boards = this.retrieveData().map(function(board) {
+				var nodes = this.state.boards;
+				var boards = nodes.map(function(board) {
 					return (
 						<Board 
 							board={board['name']} 
