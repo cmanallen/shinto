@@ -8,8 +8,6 @@ var React = require('react');
 
 var Activity = React.createClass({
 
-	mixins: [React.addons.LinkedStateMixin],
-
 	getInitialState: function() {
 		return {
 			position: this.props.position,
@@ -25,7 +23,6 @@ var Activity = React.createClass({
 					<input 
 						ref="name"
 						defaultValue={this.props.name}
-						valueLink={this.linkState('name')}
 					/>
 				</div>
 				<div className="activity-position">
@@ -33,12 +30,10 @@ var Activity = React.createClass({
 					<input 
 						ref="position"
 						defaultValue={this.props.position}
-						valueLink={this.linkState('position')}
 					/>
 				</div>
 				<button 
 					className="activity-save"
-					onClick={this.handleSave}
 				>
 					Save
 				</button>

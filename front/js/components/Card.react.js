@@ -3,7 +3,8 @@
  */
 
 
-var React = require('react');
+var React = require('react'),
+	Activity = require('./Activity.react');
 
 
 var Card = React.createClass({

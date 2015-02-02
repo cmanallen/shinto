@@ -13,7 +13,7 @@ var Header = require('./Header.react'),
 
 function getShintoState() {
 	return {
-		allItems: ShintoStore.retrieve(),
+		boards: Store.retrieve(),
 	}
 }
 
