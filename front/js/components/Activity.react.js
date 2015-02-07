@@ -18,25 +18,7 @@ var Activity = React.createClass({
 	render: function() {
 		return (
 			<li className='activity'>
-				<div className="activity-name">
-					Name:
-					<input 
-						ref="name"
-						defaultValue={this.props.name}
-					/>
-				</div>
-				<div className="activity-position">
-					Position:
-					<input 
-						ref="position"
-						defaultValue={this.props.position}
-					/>
-				</div>
-				<button 
-					className="activity-save"
-				>
-					Save
-				</button>
+				<p>{this.props.activity}</p>
 			</li>
 		)
 	},

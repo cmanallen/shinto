@@ -21,10 +21,11 @@ var Board = React.createClass({
 			return (
 				<Card 
 					card={card['name']} 
-					activities={card['activities']} 
+					activities={card['activities']}
+					refresh={this.props.refresh}
 				/>
 			)
-		});
+		}, this);
 		return (
 			<section className='row'>
 				<h3 className='board-title'>{this.props.board}</h3>

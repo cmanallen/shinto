@@ -21,10 +21,10 @@ var Card = React.createClass({
 					activity={activity['name']}
 					position={activity['position']}
 					card={activity['card']}
-					onChange={this.handleActivityChanged}
+					refresh={this.props.refresh}
 				/>
 			)
-		});
+		}, this);
 		return (
 			<li className='card'>
 				<h4>{this.props.card}</h4>

@@ -37,10 +37,11 @@ var ShintoApp = React.createClass({
 			return (
 				<Board 
 					board={board['name']} 
-					cards={board['cards']} 
+					cards={board['cards']}
+					refresh={this._onChange}
 				/>
 			)
-		});
+		}, this);
 		return (
 			<div>
 				<Header />
