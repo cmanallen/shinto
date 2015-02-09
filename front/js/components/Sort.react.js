@@ -11,8 +11,8 @@ var Sort = React.createClass({
 		return (
 			<nav id="controls">
 				<ul>
-					<li><span class="glyphicon glyphicon-th"></span></li>
-					<li><span class="glyphicon glyphicon-menu-hamburger"></span></li>
+					<li><span className="glyphicon glyphicon-th">Cards</span></li>
+					<li><span className="glyphicon glyphicon-menu-hamburger">List</span></li>
 				</ul>
 			</nav>
 		)

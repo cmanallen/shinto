@@ -15,13 +15,17 @@ var Card = React.createClass({
 	},
 
 	render: function() {
-		var activities = this.state.activities.map(function(activity) {
+		var activities = this.state.activities.sort(function(a, b) {
+			return a.position - b.position;
+		}).map(function(activity) {
 			return (
 				<Activity 
+					key={activity['id']}
 					activity={activity['name']}
 					position={activity['position']}
 					card={activity['card']}
 					refresh={this.props.refresh}
+					depth={this.props.depth[this.props.position-1]['activities']}
 				/>
 			)
 		}, this);

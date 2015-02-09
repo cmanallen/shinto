@@ -36,9 +36,12 @@ var ShintoApp = React.createClass({
 		var boards = nodes.map(function(board) {
 			return (
 				<Board 
-					board={board['name']} 
+					key={board['id']}
+					board={board['name']}
+					position={board['position']}
 					cards={board['cards']}
 					refresh={this._onChange}
+					depth={this.state.boards}
 				/>
 			)
 		}, this);
@@ -55,7 +58,7 @@ var ShintoApp = React.createClass({
 	},
 
 	_onChange: function() {
-		this.setState(getShintoState());
+		this.setState(this.state.boards);
 	},
 });
 

@@ -20,9 +20,12 @@ var Board = React.createClass({
 		}).map(function(card) {
 			return (
 				<Card 
-					card={card['name']} 
+					key={card['id']}
+					card={card['name']}
+					position={card['position']}
 					activities={card['activities']}
 					refresh={this.props.refresh}
+					depth={this.props.depth[this.props.position-1]['cards']}
 				/>
 			)
 		}, this);
