@@ -14,6 +14,28 @@ var Card = React.createClass({
 		}
 	},
 
+	moveUp: function() {
+		var current = this.props.position,
+			above = current - 1;
+
+		if (above > 0) {
+			this.props.depth.swap(current, above);
+		}
+		
+		return this.props.refresh();
+	},
+
+	moveDown: function() {
+		var current = this.props.position,
+			below = current + 1;
+
+		if (below <= this.props.depth.length) {
+			this.props.depth.swap(current, below);
+		}
+		
+		return this.props.refresh();
+	},
+
 	render: function() {
 		var activities = this.state.activities.sort(function(a, b) {
 			return a.position - b.position;
@@ -31,7 +53,17 @@ var Card = React.createClass({
 		}, this);
 		return (
 			<li className='card'>
-				<h4>{this.props.card}</h4>
+				<h4>
+					{this.props.card}
+					<span
+						className="move"
+						onClick={this.moveUp}
+					>^</span> 
+					<span
+						className="move"
+						onClick={this.moveDown}
+					>v</span>
+				</h4>
 				<ul>
 					{activities}
 				</ul>

@@ -16,7 +16,7 @@ var Board = React.createClass({
 
 	render: function() {
 		var cards = this.state.cards.sort(function(a, b) {
-			return parseFloat(a.id) - parseFloat(b.id);
+			return a.position - b.position;
 		}).map(function(card) {
 			return (
 				<Card 

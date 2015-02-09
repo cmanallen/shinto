@@ -4,12 +4,7 @@
 
 
 var React = require('react');
-
-
-Array.prototype.swap = function(a, b) {
-	this[a-1]['position'] = b;
-	this[b-1]['position'] = a;
-};
+var Utils = require('../utils/utils');
 
 
 var Activity = React.createClass({
