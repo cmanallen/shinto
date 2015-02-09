@@ -25,10 +25,10 @@ The API is currently unused in the React frontend but it does function (Python 3
 
 ####Limitations
 
-1. Ajax handling is currently not implemented.
-2. Drag and drop support is currently not implemented.
-3. Board, Card, and Activity name changing is currently not implemented.
-4. Adding additional boards, cards, and activities are currently not implemented.
+1. Ajax handling is not currently implemented.
+2. Drag and drop support is not currently implemented.
+3. Board, Card, and Activity name changing is not currently implemented.
+4. Adding additional boards, cards, and activities are not currently implemented.
 5. Displaying comments is not currently implemented.
 
 ####License
