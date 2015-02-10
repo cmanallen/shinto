@@ -10,7 +10,7 @@ var AppDispatcher = require('../dispatcher/AppDispatcher'),
 var ShintoActions = {
 	create: function() {
 		AppDispatcher.dispatch({
-			actionType: ShintoConstants.TODO_CREATE,
+			actionType: ShintoConstants.ACTIVITY_NEW,
 			text: text,
 		});
 	},
