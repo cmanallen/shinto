@@ -1,73 +1,36 @@
-Replace the AJAX call (retrieveData()) with the JSON dump below.  Don't bother trying to setup Django (unless you really want to).
+Shinto
+==
 
-	[
-	    {
-	        "url": "http://localhost:8000/api/v1/board/1/", 
-	        "id": 1, 
-	        "name": "Family Chores", 
-	        "position": 1, 
-	        "cards": [
-	            {
-	                "id": 1, 
-	                "name": "Colton", 
-	                "position": 1, 
-	                "activities": [
-	                    {
-	                        "id": 1, 
-	                        "name": "Make Bed", 
-	                        "position": 1, 
-	                        "card": 1, 
-	                        "comments": []
-	                    }, 
-	                    {
-	                        "id": 4, 
-	                        "name": "Make React Frontend", 
-	                        "position": 2, 
-	                        "card": 1, 
-	                        "comments": []
-	                    }, 
-	                    {
-	                        "id": 5, 
-	                        "name": "Test Position", 
-	                        "position": 0, 
-	                        "card": 1, 
-	                        "comments": []
-	                    }
-	                ]
-	            }, 
-	            {
-	                "id": 2, 
-	                "name": "Ashley", 
-	                "position": 2, 
-	                "activities": [
-	                    {
-	                        "id": 2, 
-	                        "name": "Make Dinner", 
-	                        "position": 1, 
-	                        "card": 2, 
-	                        "comments": []
-	                    }
-	                ]
-	            }, 
-	            {
-	                "id": 3, 
-	                "name": "Bloo", 
-	                "position": 3, 
-	                "activities": [
-	                    {
-	                        "id": 3, 
-	                        "name": "Lick Butt", 
-	                        "position": 1, 
-	                        "card": 3, 
-	                        "comments": [
-	                            {
-	                                "id": 1, 
-	                                "body": "Shouldn't be too hard for you..."
-	                            }
-	                        ]
-	                    }
-	                ]
-	            }
-	        ]
-	    }
-	]
+####About Shinto
+
+Shinto is a kanban style task management framework built with ReactJS, Django, and Django REST Framework.
+
+####React Frontend Usage
+
+1. Clone the repo.
+2. Change directory into `front`
+3. Run npm start (Python 2 only pass --python 2 if python 3 is your default).
+4. Open `index.html` in a web browser.
+
+####Django API Usage
+
+The API is currently unused in the React frontend but it does function (Python 3 only).
+
+1. Clone the repo
+2. Change directory into the repository root.
+3. Create a virtual environment.
+4. Activate your environment and install the requirements.
+5. Change directory into `shinto`.
+6. Run `./manage.py runserver --settings=shinto.settings.cmanallen`
+
+####Limitations
+
+1. Ajax handling is not currently implemented.
+2. Drag and drop support is not currently implemented.
+3. Board, Card, and Activity name changing is not currently implemented.
+4. Adding additional boards, cards, and activities are not currently implemented.
+5. Displaying comments is not currently implemented.
+
+####License
+
+MIT
