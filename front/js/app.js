@@ -5,10 +5,10 @@
 
 var React = require('react');
 
-var ShintoApp = require('./components/ShintoApp.react');
+var App = require('./components/Kanban.react');
 
 
 React.render(
-	<ShintoApp />,
+	<App />,
 	document.getElementById('shintoapp')
 );

@@ -3,8 +3,7 @@
  */
 
 
-var React = require('react'),
-	ShintoActions = require('../actions/ShintoActions');
+var React = require('react');
 
 
 var Header = React.createClass({

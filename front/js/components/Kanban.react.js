@@ -3,24 +3,25 @@
  */
 
 
-var Header = require('./Header.react'),
-	Footer = require('./Footer.react'),
-	Sort = require('./Sort.react'),
-	Board = require('./Board.react'),
-	React = require('react'),
-	Store = require('../stores/ShintoStore');
+var Header = require('./Header.react');
+var Footer = require('./Footer.react');
+var Sort = require('./Sort.react');
+var Board = require('./Board.react');
+var React = require('react');
+var Store = require('../stores/KanbanStore');
 
 
-function getShintoState() {
+function getKanbanState() {
 	return {
-		boards: Store.retrieve(),
+		boards: Store.getAll(),
 	}
-}
+};
 
 
-var ShintoApp = React.createClass({
+var Kanban = React.createClass({
+
 	getInitialState: function() {
-		return getShintoState();
+		return getKanbanState();
 	},
 
 	componentDidMount: function() {
@@ -58,9 +59,10 @@ var ShintoApp = React.createClass({
 	},
 
 	_onChange: function() {
-		this.setState(this.state.boards);
+		this.setState(getKanbanState());
 	},
+
 });
 
 
-module.exports = ShintoApp;
+module.exports = Kanban;
