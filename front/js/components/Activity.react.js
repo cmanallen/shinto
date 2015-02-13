@@ -17,13 +17,13 @@ var Activity = React.createClass({
 
 	getInitialState: function() {
 		return {
-			position: this.props.position,
-			activity: this.props.activity,
+			position: this.props.activity.position,
+			activity: this.props.activity.name,
 		}
 	},
 
 	moveUp: function() {
-		var current = this.props.position,
+		var current = this.props.activity.position,
 			above = current - 1;
 
 		if (above > 0) {
@@ -34,7 +34,7 @@ var Activity = React.createClass({
 	},
 
 	moveDown: function() {
-		var current = this.props.position,
+		var current = this.props.activity.position,
 			below = current + 1;
 
 		if (below <= this.props.depth.length) {
@@ -61,6 +61,7 @@ var Activity = React.createClass({
 			</li>
 		)
 	},
+
 });
 
 

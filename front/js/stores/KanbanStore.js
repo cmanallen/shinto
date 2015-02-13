@@ -105,13 +105,18 @@ function createActivity(activity) {
 };
 
 
-function updateAllActivities(activities) {
-	// Some looped PUT request
+function updateActivity(activity) {
+	// Some PUT request
 };
 
 
 function destroyActivity(activity) {
 	// Some DELETE request
+};
+
+
+function updateAllActivities(activities) {
+	// Some looped PUT request
 };
 
 
@@ -166,6 +171,11 @@ AppDispatcher.register(function(action) {
 
 		case KanbanConstants.ACTIVITY_NEW:
 			createActivity(action);
+			KanbanStore.emitChange();
+			break;
+
+		case KanbanConstants.ACTIVITY_COMPLETE:
+			destroyActivity(action.id);
 			KanbanStore.emitChange();
 			break;
 

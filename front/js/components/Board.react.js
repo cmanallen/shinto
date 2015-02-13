@@ -8,6 +8,7 @@ var React = require('react'),
 
 
 var Board = React.createClass({
+	
 	getInitialState: function() {
 		return {
 			cards: this.props.cards,
@@ -21,11 +22,13 @@ var Board = React.createClass({
 			return (
 				<Card 
 					key={card['id']}
-					card={card['name']}
-					position={card['position']}
-					activities={card['activities']}
+					card={card}
 					refresh={this.props.refresh}
-					depth={this.props.depth[this.props.position-1]['cards']}
+					depth={
+						this.props.depth[
+							this.props.position-1
+						]['cards']
+					}
 				/>
 			)
 		}, this);
@@ -37,7 +40,8 @@ var Board = React.createClass({
 				</ul>
 			</section>
 		)
-	}
+	},
+
 });
 
 

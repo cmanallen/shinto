@@ -8,14 +8,15 @@ var React = require('react'),
 
 
 var Card = React.createClass({
+	
 	getInitialState: function() {
 		return {
-			activities: this.props.activities,
+			activities: this.props.card.activities,
 		}
 	},
 
 	moveUp: function() {
-		var current = this.props.position,
+		var current = this.props.card.position,
 			above = current - 1;
 
 		if (above > 0) {
@@ -26,7 +27,7 @@ var Card = React.createClass({
 	},
 
 	moveDown: function() {
-		var current = this.props.position,
+		var current = this.props.card.position,
 			below = current + 1;
 
 		if (below <= this.props.depth.length) {
@@ -43,18 +44,16 @@ var Card = React.createClass({
 			return (
 				<Activity 
 					key={activity['id']}
-					activity={activity['name']}
-					position={activity['position']}
-					card={activity['card']}
+					activity={activity}
 					refresh={this.props.refresh}
-					depth={this.props.depth[this.props.position-1]['activities']}
+					depth={this.props.depth[this.props.card.position-1]['activities']}
 				/>
 			)
 		}, this);
 		return (
 			<li className='card'>
 				<h4>
-					{this.props.card}
+					{this.props.card.name}
 					<span
 						className="move"
 						onClick={this.moveUp}
@@ -69,7 +68,8 @@ var Card = React.createClass({
 				</ul>
 			</li>
 		)
-	}
+	},
+
 });
 
 

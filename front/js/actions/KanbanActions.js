@@ -36,6 +36,13 @@ var KanbanActions = {
 		});
 	},
 
+	completeActivity: function(id) {
+		AppDispatcher.dispatch({
+			actionType: KanbanConstants.ACTIVITY_COMPLETE,
+			id: id,
+		});
+	},
+
 	destroyActivity: function(id) {
 		AppDispatcher.dispatch({
 			actionType: KanbanConstants.ACTIVITY_DESTROY,
