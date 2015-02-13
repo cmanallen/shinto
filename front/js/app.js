@@ -10,5 +10,5 @@ var App = require('./components/Kanban.react');
 
 React.render(
 	<App />,
-	document.getElementById('shintoapp')
+	document.getElementById('app')
 );

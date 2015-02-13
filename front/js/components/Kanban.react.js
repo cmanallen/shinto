@@ -50,7 +50,7 @@ var Kanban = React.createClass({
 			<div>
 				<Header />
 				<Sort />
-				<main>
+				<main className="container-fluid">
 					{boards}
 				</main>
 				<Footer />
