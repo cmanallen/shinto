@@ -38,9 +38,7 @@ var Kanban = React.createClass({
 			return (
 				<Board 
 					key={board['id']}
-					board={board['name']}
-					position={board['position']}
-					cards={board['cards']}
+					board={board}
 					refresh={this._onChange}
 					depth={this.state.boards}
 				/>

@@ -3,11 +3,17 @@
  */
 
 
-var React = require('react'),
-	Activity = require('./Activity.react');
+var React = require('react');
+var Activity = require('./Activity.react');
 
 
 var Card = React.createClass({
+
+	propTypes: {
+		card: React.PropTypes.object,
+		depth: React.PropTypes.array,
+		refresh: React.PropTypes.func.isRequired,
+	},
 	
 	getInitialState: function() {
 		return {

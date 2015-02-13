@@ -10,8 +10,7 @@ var Utils = require('../utils/utils');
 var Activity = React.createClass({
 
 	propTypes: {
-		activity: React.PropTypes.string,
-		position: React.PropTypes.number,
+		activity: React.PropTypes.object,
 		refresh: React.PropTypes.func.isRequired,
 	},
 

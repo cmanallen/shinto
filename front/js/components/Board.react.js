@@ -3,15 +3,21 @@
  */
 
 
-var React = require('react'),
-	Card = require('./Card.react');
+var React = require('react');
+var Card = require('./Card.react');
 
 
 var Board = React.createClass({
+
+	propTypes: {
+		board: React.PropTypes.object,
+		depth: React.PropTypes.array,
+		refresh: React.PropTypes.func.isRequired,
+	},
 	
 	getInitialState: function() {
 		return {
-			cards: this.props.cards,
+			cards: this.props.board.cards,
 		}
 	},
 
@@ -26,7 +32,7 @@ var Board = React.createClass({
 					refresh={this.props.refresh}
 					depth={
 						this.props.depth[
-							this.props.position-1
+							this.props.board.position-1
 						]['cards']
 					}
 				/>
@@ -34,7 +40,7 @@ var Board = React.createClass({
 		}, this);
 		return (
 			<section className='row'>
-				<h3 className='board-title'>{this.props.board}</h3>
+				<h3 className='board-title'>{this.props.board.name}</h3>
 				<ul>
 					{cards}
 				</ul>

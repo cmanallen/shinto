@@ -194,7 +194,7 @@ AppDispatcher.register(function(action) {
 			KanbanStore.emitChange();
 			break;
 
-	}
+	};
 
 });
 
