@@ -136,8 +136,8 @@ var KanbanStore = assign({}, EventEmitter.prototype, {
 		return _boards[id];
 	},
 
-	getAll: function() {
-		return _boards;
+	getAll: function(callback) {
+		return setTimeout(callback, 500);
 	},
 
 	emitChange: function() {
