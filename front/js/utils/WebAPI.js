@@ -36,17 +36,13 @@ module.exports = {
 	},
 
 	getBoards: function() {
-		var ctx;
-		get('/api/v1/boards', function(err, resp) {
+		this.get('http://localhost:8000/api/v1/board/?format=json', function(err, resp) {
 			if (!err) {
-				ctx = JSON.parse(response);
+				KanbanActions.receiveAll(JSON.parse(resp));
 			} else {
 				ctx = err;
 			}
 		});
-
-		// Propogate action
-		KanbanActions.receiveAll(ctx);
 	},
 
 }

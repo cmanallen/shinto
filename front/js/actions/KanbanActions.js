@@ -10,8 +10,8 @@ var KanbanConstants = require('../constants/KanbanConstants');
 var KanbanActions = {
 
 	receiveAll: function(boards) {
-		AppDispatcher.handleServerAction({
-			type: KanbanConstants.RECEIEVE_BOARDS,
+		AppDispatcher.dispatch({
+			type: KanbanConstants.RECEIVE_BOARDS,
 			boards: boards,
 		});
 	},
