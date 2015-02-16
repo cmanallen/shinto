@@ -77,7 +77,7 @@ AppDispatcher.register(function(action) {
 			KanbanStore.emitChange();
 			break;
 
-		case KanbanConstants.RECEIVE_BOARDS;
+		case KanbanConstants.RECEIVE_BOARDS:
 			_boards = action.boards;
 			KanbanStore.emitChange();
 			break;
