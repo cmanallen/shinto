@@ -10,124 +10,7 @@ var assign = require('object-assign');
 
 
 var CHANGE_EVENT = 'change';
-var _boards = [
-	{
-		"url": "http://localhost:8000/api/v1/board/1/", 
-		"id": 1, 
-		"name": "Family Chores", 
-		"position": 1, 
-		"cards": [
-			{
-				"id": 1, 
-				"name": "Colton", 
-				"position": 1, 
-				"activities": [
-					{
-						"id": 1, 
-						"name": "Make Bed", 
-						"position": 1, 
-						"card": 1, 
-						"comments": []
-					}, 
-					{
-						"id": 4, 
-						"name": "Make React Frontend", 
-						"position": 2, 
-						"card": 1, 
-						"comments": []
-					}, 
-					{
-						"id": 5, 
-						"name": "Test Position", 
-						"position": 3, 
-						"card": 1, 
-						"comments": []
-					}
-				]
-			}, 
-			{
-				"id": 2, 
-				"name": "Ashley", 
-				"position": 2, 
-				"activities": [
-					{
-						"id": 2, 
-						"name": "Make Dinner", 
-						"position": 1, 
-						"card": 2, 
-						"comments": []
-					},
-					{
-						"id": 6, 
-						"name": "Go to work", 
-						"position": 2, 
-						"card": 2, 
-						"comments": []
-					}
-				]
-			}, 
-			{
-				"id": 3, 
-				"name": "Bloo", 
-				"position": 3, 
-				"activities": [
-					{
-						"id": 3, 
-						"name": "Lick Butt", 
-						"position": 1, 
-						"card": 3, 
-						"comments": [
-							{
-								"id": 1, 
-								"body": "Shouldn't be too hard for you..."
-							}
-						]
-					}
-				]
-			}
-		]
-	}
-];
-
-
-function createCard(card) {
-	// Some POST request
-};
-
-
-function destroyCard(card) {
-	// Some DELETE request
-};
-
-
-function createActivity(activity) {
-	// Some POST request
-};
-
-
-function updateActivity(activity) {
-	// Some PUT request
-};
-
-
-function destroyActivity(activity) {
-	// Some DELETE request
-};
-
-
-function updateAllActivities(activities) {
-	// Some looped PUT request
-};
-
-
-function createComment(comment) {
-	// Some POST request
-};
-
-
-function destroyComment(comment) {
-	// Some DELETE request
-};
+var _boards = [];
 
 
 var KanbanStore = assign({}, EventEmitter.prototype, {
@@ -136,8 +19,8 @@ var KanbanStore = assign({}, EventEmitter.prototype, {
 		return _boards[id];
 	},
 
-	getAll: function(callback) {
-		return setTimeout(callback, 500);
+	getAll: function() {
+		return _boards;
 	},
 
 	emitChange: function() {
@@ -157,40 +40,45 @@ var KanbanStore = assign({}, EventEmitter.prototype, {
 
 AppDispatcher.register(function(action) {
 	
-	switch(action.ActionType) {
+	switch(action.type) {
 
 		case KanbanConstants.CARD_NEW:
-			createCard(action);
+			// createCard(action);
 			KanbanStore.emitChange();
 			break;
 
 		case KanbanConstants.CARD_DESTROY:
-			destroyCard(action.id);
+			// destroyCard(action.id);
 			KanbanStore.emitChange();
 			break;
 
 		case KanbanConstants.ACTIVITY_NEW:
-			createActivity(action);
+			// createActivity(action);
 			KanbanStore.emitChange();
 			break;
 
 		case KanbanConstants.ACTIVITY_COMPLETE:
-			destroyActivity(action.id);
+			// destroyActivity(action.id);
 			KanbanStore.emitChange();
 			break;
 
 		case KanbanConstants.ACTIVITY_DESTROY:
-			destroyActivity(action.id);
+			// destroyActivity(action.id);
 			KanbanStore.emitChange();
 			break;
 
 		case KanbanConstants.COMMENT_NEW:
-			createComment(action);
+			// createComment(action);
 			KanbanStore.emitChange();
 			break;
 
 		case KanbanConstants.COMMENT_DESTROY:
-			destroyComment(action.id);
+			// destroyComment(action.id);
+			KanbanStore.emitChange();
+			break;
+
+		case KanbanConstants.RECEIVE_BOARDS;
+			_boards = action.boards;
 			KanbanStore.emitChange();
 			break;
 

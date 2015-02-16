@@ -14,4 +14,5 @@ module.exports = keyMirror({
 	ACTIVITY_DESTROY: null,
 	COMMENT_NEW: null,
 	COMMENT_DESTROY: null,
+	RECEIVE_BOARDS: null,
 });

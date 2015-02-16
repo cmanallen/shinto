@@ -9,6 +9,13 @@ var KanbanConstants = require('../constants/KanbanConstants');
 
 var KanbanActions = {
 
+	receiveAll: function(boards) {
+		AppDispatcher.handleServerAction({
+			type: KanbanConstants.RECEIEVE_BOARDS,
+			boards: boards,
+		});
+	},
+
 	createCard: function(card) {
 		AppDispatcher.dispatch({
 			actionType: KanbanConstants.CARD_NEW,
