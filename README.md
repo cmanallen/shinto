@@ -11,8 +11,8 @@ Shinto is a kanban style task management framework built with ReactJS, Django, a
 2. Change directory into `front`
 3. Run npm start (Python 2 only pass --python 2 if python 3 is your default).
 4. Open `index.html` in a web browser with cross origin requests enabled.
-  a. On Linux: `chromium --disable-web-security`
-  b. On OSX: Install `Allow-Control-Allow-Origin` (Chrome, Chromium)
+  5. On Linux: `chromium --disable-web-security`
+  6. On OSX: Install `Allow-Control-Allow-Origin` (Chrome, Chromium)
 
 ####Django API Usage
 
