@@ -26,7 +26,7 @@ module.exports = {
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState == 4) {
 				if (xhr.status == 200) {
-					callback(null, xhr.responseText);
+					callback(null, data);
 				} else {
 					callback(xhr.statusText);
 				}
@@ -40,7 +40,7 @@ module.exports = {
 			if (!err) {
 				KanbanActions.receiveAll(JSON.parse(resp));
 			} else {
-				ctx = err;
+				KanbanActions.propogateError(err);
 			}
 		});
 	},
