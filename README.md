@@ -10,11 +10,11 @@ Shinto is a kanban style task management framework built with ReactJS, Django, a
 1. Clone the repo.
 2. Change directory into `front`
 3. Run npm start (Python 2 only pass --python 2 if python 3 is your default).
-4. Open `index.html` in a web browser.
+4. Open `index.html` in a web browser with cross origin requests enabled.
+  a. On Linux: `chromium --disable-web-security`
+  b. On OSX: Install `Allow-Control-Allow-Origin` (Chrome, Chromium)
 
 ####Django API Usage
-
-The API is currently unused in the React frontend but it does function (Python 3 only).
 
 1. Clone the repo
 2. Change directory into the repository root.
@@ -25,7 +25,6 @@ The API is currently unused in the React frontend but it does function (Python 3
 
 ####Limitations
 
-1. Ajax handling is not currently implemented.
 2. Drag and drop support is not currently implemented.
 3. Board, Card, and Activity name changing is not currently implemented.
 4. Adding additional boards, cards, and activities are not currently implemented.
